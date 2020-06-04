@@ -1,4 +1,4 @@
-#JSONPlaceholder Processor
+# JSONPlaceholder Processor
 Goal of this app is to process posts from [JSONPlaceholder site](https://jsonplaceholder.typicode.com/) and save them to individual *.json files.
 
 ## How to run
