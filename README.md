@@ -2,14 +2,19 @@
 Goal of this app is to process posts from [JSONPlaceholder site](https://jsonplaceholder.typicode.com/) and save them to individual *.json files.
 
 ## How to run
+Use gradle to build and run project:
 
     gradlew run
     
-or
+Alternatively you can use precompiled jar:
 
+    java -jar json-placeholder-processor.jar
+
+## How to build
+To build fat jar run:
+    
     gradlew clean build
-    java -jar json-placeholder-processor-<VERSION_NUMBER>.jar
-
+    
 ## Used libraries
 * [Fuel](https://github.com/kittinunf/fuel)
 
