@@ -18,7 +18,8 @@ To build fat jar run:
 ## Used libraries
 * [Fuel](https://github.com/kittinunf/fuel)
 
-## Minimal solution for happy path
+## Minimal solution
+Following code could be used as minimal happy-path solution for considered problem:
 
     import com.github.kittinunf.fuel.httpGet
     import com.github.kittinunf.fuel.json.responseJson
