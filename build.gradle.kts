@@ -19,12 +19,17 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation("com.github.ajalt:clikt:2.7.1")
     implementation("com.github.kittinunf.fuel:fuel:2.2.1")
     implementation("com.github.kittinunf.fuel:fuel-json:2.2.1"){
         exclude("org.json","json")
     }
 
     implementation("org.json:json:20200518")
+    implementation("org.slf4j:slf4j-simple:1.7.30")
+    implementation("io.github.microutils:kotlin-logging:1.7.9")
+    testImplementation("io.mockk:mockk:1.10.0")
+    testImplementation("com.github.kittinunf.fuel:fuel-test:2.0.1")
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
 }
