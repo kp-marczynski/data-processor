@@ -5,6 +5,8 @@ import io.mockk.*
 import org.hamcrest.CoreMatchers.*
 import org.junit.Assert.assertThat
 import org.junit.Test
+import pl.kpmarczynski.jsonplaceholderprocessor.command.JsonProcessor
+import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterProvider
 import java.io.StringWriter
 import org.hamcrest.CoreMatchers.`is` as isEqualTo
 

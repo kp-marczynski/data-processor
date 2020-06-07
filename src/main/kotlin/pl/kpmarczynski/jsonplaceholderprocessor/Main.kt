@@ -1,3 +1,7 @@
 package pl.kpmarczynski.jsonplaceholderprocessor
 
-fun main(args: Array<String> = emptyArray()) = JsonProcessor(FileWriterProvider).main(args)
+import pl.kpmarczynski.jsonplaceholderprocessor.command.DownloadAndSaveCommand
+
+fun main(args: Array<String> = emptyArray()) {
+    DownloadAndSaveCommand().main(args)
+}
