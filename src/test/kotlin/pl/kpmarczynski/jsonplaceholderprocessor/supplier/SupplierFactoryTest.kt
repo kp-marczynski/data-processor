@@ -1,42 +1,46 @@
-//package pl.kpmarczynski.jsonplaceholderprocessor.supplier
-//
-//import org.junit.jupiter.api.Assertions
-//import org.junit.jupiter.api.DynamicTest.dynamicTest
-//import org.junit.jupiter.api.TestFactory
-//import org.junit.jupiter.params.ParameterizedTest
-//import org.junit.jupiter.params.provider.Arguments
-//import org.junit.jupiter.params.provider.MethodSource
-//import kotlin.test.assertEquals
-//
-//internal class SupplierFactoryTest {
-//    @ParameterizedTest
-//    @MethodSource("squares")
-//    fun testSquares(input: Int, expected: Int) {
-//        Assertions.assertEquals(expected, input * input)
-//    }
-//
-//    @TestFactory
-//    fun `test email id validity`() =
-//        listOf(
-//            "mary@testdomain.com" to true,
-//            "mary.smith@testdomain.com" to true,
-//            "mary_smith123@testdomain.com" to true,
-//            "mary@testdomaindotcom" to false,
-//            "mary-smith@testdomain" to false,
-//            "testdomain.com" to false
-//        ).map {
-//            dynamicTest("email ${it.first} should be ${if (it.second) "valid" else "not valid" }") {
-//                val actual = "asdf"
-//                assertEquals(it.first, actual)
-//            }
-//        }
-//
-//
-//    companion object {
-//        @JvmStatic
-//        fun squares() = listOf(
-//            Arguments.of(1, 1),
-//            Arguments.of(2, 4)
-//        )
-//    }
-//}
+package pl.kpmarczynski.jsonplaceholderprocessor.supplier
+
+import org.hamcrest.CoreMatchers
+import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.MatcherAssert
+import org.junit.Assert.assertThat
+import org.junit.Test
+import kotlin.test.assertFailsWith
+
+internal class SupplierFactoryTest {
+    @Test
+    fun `For http request type should return HttpSupplier instance`() {
+        //given
+        val requestType = "http"
+
+        //when
+        val result = SupplierFactory.getSupplier(requestType)
+
+        //then
+        assertThat(result, instanceOf(HttpSupplier::class.java))
+    }
+
+    @Test
+    fun `For https request type should return HttpSupplier instance`() {
+        //given
+        val requestType = "https"
+
+        //when
+        val result = SupplierFactory.getSupplier(requestType)
+
+        //then
+        assertThat(result, instanceOf(HttpSupplier::class.java))
+    }
+
+    @Test
+    fun `For ftp request type should throw exception`() {
+        //given
+        val requestType = "ftp"
+
+        //when
+        val exception = assertFailsWith<SupplierException> { SupplierFactory.getSupplier(requestType)}
+
+        //then
+        MatcherAssert.assertThat(exception.message, CoreMatchers.`is`("No supplier available for request type $requestType"))
+    }
+}

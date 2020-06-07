@@ -35,12 +35,17 @@ dependencies {
     testImplementation(kotlin("test-junit"))
 //    testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.2")
 //    testImplementation("org.junit.platform:junit-platform-commons:1.5.2")
-//    implementation(kotlin("reflect"))
-//    implementation("org.reflections:reflections:0.9.12")
+    implementation(kotlin("reflect"))
+    implementation("org.reflections:reflections:0.9.12")
 }
 
-sourceSets.main {
-    java.srcDirs("src/main/kotlin")
+sourceSets {
+    main {
+        java.srcDirs("src/main/kotlin")
+    }
+    test {
+        java.srcDirs("src/main/kotlin")
+    }
 }
 
 tasks {
