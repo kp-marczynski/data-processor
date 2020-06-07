@@ -3,6 +3,7 @@ import org.gradle.jvm.tasks.Jar
 plugins {
     application
     kotlin("jvm") version "1.3.72"
+//    java
 }
 
 group = "pl.kpmarczynski.jsonplaceholderprocessor"
@@ -32,6 +33,8 @@ dependencies {
     testImplementation("com.github.kittinunf.fuel:fuel-test:2.0.1")
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
+//    testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.2")
+//    testImplementation("org.junit.platform:junit-platform-commons:1.5.2")
 //    implementation(kotlin("reflect"))
 //    implementation("org.reflections:reflections:0.9.12")
 }
@@ -64,4 +67,8 @@ tasks {
     "build" {
         dependsOn(fatJar)
     }
+//    "test"(Test::class) {
+//        useJUnitPlatform()
+//    }
 }
+

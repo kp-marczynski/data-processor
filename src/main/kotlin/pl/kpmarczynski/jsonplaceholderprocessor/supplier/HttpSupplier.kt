@@ -7,6 +7,6 @@ object HttpSupplier : Supplier {
     override fun getData(request: String): String =
         when (val result = request.httpGet().responseString().third) {
             is Result.Success -> result.get()
-            is Result.Failure -> throw RuntimeException("Request failed")
+            is Result.Failure -> throw SupplierException("Http request failed")
         }
 }

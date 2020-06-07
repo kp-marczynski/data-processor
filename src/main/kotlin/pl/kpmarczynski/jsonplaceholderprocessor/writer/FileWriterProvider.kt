@@ -8,15 +8,20 @@ object FileWriterProvider : WriterProvider {
     private const val DEFAULT_PATH = "posts"
 
     override fun getWriter(writable: Writable, config: Map<String, String>): Writer {
-        val path = config["path"] ?: DEFAULT_PATH
+        val path: String = config["path"]
+            .let { if (it.isNullOrBlank()) DEFAULT_PATH else it }
+            .let { if (it.last() != '/') "$it/" else it }
         val extension = config["extension"] ?: DEFAULT_FILE_EXTENSION
-        return when(writable){
+            .let {
+                if (it.first() != '.') ".$it" else it
+            }
+        return when (writable) {
             is Writable.WritableObject -> {
-                val filepath = "$path/${writable.identifier}.$extension"
+                val filepath = "$path${writable.identifier}$extension"
                 File(File(filepath).parent).let { parent -> if (!parent.exists()) parent.mkdirs() }
                 File(filepath).bufferedWriter()
             }
-            else -> throw RuntimeException("File writer is applicable only for WritableObject")
+            else -> throw WriterProviderException("File writer is applicable only for WritableObject instances.")
         }
 
     }

@@ -4,6 +4,6 @@ object WriterProviderFactory {
     fun getWriterProvider(destinationType: String): WriterProvider =
         when (destinationType) {
             "file" -> FileWriterProvider
-            else -> throw RuntimeException("No supplier")
+            else -> throw WriterProviderException("No writer available for destination type $destinationType")
         }
 }

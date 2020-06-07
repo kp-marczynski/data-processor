@@ -4,6 +4,6 @@ object ParserFactory {
     fun getParser(resultType: String): Parser =
         when (resultType) {
             "jsonarray" -> JsonArrayParser
-            else -> throw RuntimeException("No parser")
+            else -> throw ParserException("No parser available for result type $resultType")
         }
 }

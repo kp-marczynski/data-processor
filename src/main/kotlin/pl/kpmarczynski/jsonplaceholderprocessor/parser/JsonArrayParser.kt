@@ -16,7 +16,7 @@ object JsonArrayParser : Parser {
         return Writable.WritableCollection(jsonArray.map {
             val jsonObject = it as JSONObject
             val identifier = jsonObject[identifierKey]
-                ?: throw RuntimeException("Identifier for given key not present in JsonObject")
+                ?: throw ParserException("Identifier for key '$identifierKey' is not present in JsonObject")
 
             Writable.WritableObject(identifier.toString(), jsonObject.toString(prettify))
         })
