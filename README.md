@@ -1,17 +1,23 @@
-# JSONPlaceholder Processor
+# Data processor
 This script allows user to download data from provided source and save it with selected writer.
 
 By default it downloads jsonarray from [JSONPlaceholder site](https://jsonplaceholder.typicode.com/) and save json object to separate json files.
 
+## Overview
+Provided solution was designed to be highly extensible what is assured by abstracting data supplier, parser and writer implementations using factories.
+Script data flow works as following:
+* Supplier provides raw data
+* Parser parses supplied data to writable format
+* Writable data is written with provided writer
+    
 ## How to run with default values
 Use gradle to build and run project:
 
     gradlew run
     
-Alternatively you can use precompiled jar:
+Alternatively you can use precompiled fat jar:
 
-    java -jar json-placeholder-processor.jar
-
+    java -jar data-processor.jar
 
 ## Available run options
 
@@ -23,8 +29,6 @@ Alternatively you can use precompiled jar:
     --writer-config VALUE    Collection of configuration pairs for writer
     -h, --help               Show this message and exit
 
-
-
 ### Config values
 User can define parser and writer configuration as dynamic map of key-value pairs. 
 Following are keys currently supported:
@@ -35,12 +39,10 @@ Following are keys currently supported:
     * path - Directory in which files should be written. Default: "posts"
     * extension - Extension of written files. Default: ".json"
     
-
 ### Example script invocation with parameters
     
     gradlew run --args="-r https --source https://test.com --parser-config indentation=5 --parser-config identifierKey=name --writer-config extension=xml --writer-config path=sample"
     
-
 ## How to build
 To build fat jar run:
     

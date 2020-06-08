@@ -1,4 +1,4 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.writer
+package pl.kpmarczynski.dataprocessor.writer
 
 import java.io.Writer
 

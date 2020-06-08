@@ -1,6 +1,6 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.parser
+package pl.kpmarczynski.dataprocessor.parser
 
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.Writable
+import pl.kpmarczynski.dataprocessor.writer.Writable
 
 interface Parser {
     fun parse(source: String, config: Map<String, String>): Writable

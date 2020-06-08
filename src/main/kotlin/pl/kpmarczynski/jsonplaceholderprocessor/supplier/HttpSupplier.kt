@@ -1,4 +1,4 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.supplier
+package pl.kpmarczynski.dataprocessor.supplier
 
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result

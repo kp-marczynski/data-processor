@@ -1,4 +1,4 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.parser
+package pl.kpmarczynski.dataprocessor.parser
 
 import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.instanceOf

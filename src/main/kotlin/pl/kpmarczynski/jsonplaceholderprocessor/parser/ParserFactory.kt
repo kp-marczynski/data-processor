@@ -1,4 +1,4 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.parser
+package pl.kpmarczynski.dataprocessor.parser
 
 object ParserFactory {
     fun getParser(resultType: String): Parser =

@@ -1,12 +1,12 @@
-//package pl.kpmarczynski.jsonplaceholderprocessor
+//package pl.kpmarczynski.dataprocessor
 //
 //import com.github.kittinunf.fuel.core.*
 //import io.mockk.*
 //import org.hamcrest.CoreMatchers.*
 //import org.junit.Assert.assertThat
 //import org.junit.Test
-//import pl.kpmarczynski.jsonplaceholderprocessor.command.JsonProcessor
-//import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterProvider
+//import pl.kpmarczynski.dataprocessor.command.JsonProcessor
+//import pl.kpmarczynski.dataprocessor.writer.WriterProvider
 //import java.io.StringWriter
 //import org.hamcrest.CoreMatchers.`is` as isEqualTo
 //

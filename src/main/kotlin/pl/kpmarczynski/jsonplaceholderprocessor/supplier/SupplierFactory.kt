@@ -1,4 +1,4 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.supplier
+package pl.kpmarczynski.dataprocessor.supplier
 
 object SupplierFactory {
     fun getSupplier(requestType: String): Supplier =

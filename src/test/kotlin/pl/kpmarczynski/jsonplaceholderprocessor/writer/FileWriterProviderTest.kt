@@ -1,4 +1,4 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.writer
+package pl.kpmarczynski.dataprocessor.writer
 
 import io.mockk.*
 import org.hamcrest.CoreMatchers

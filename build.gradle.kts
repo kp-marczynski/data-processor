@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version "1.3.72"
 }
 
-group = "pl.kpmarczynski.jsonplaceholderprocessor"
+group = "pl.kpmarczynski.dataprocessor"
 version = "1.0.0"
 
 application {
@@ -51,9 +51,9 @@ tasks {
 
 val fatJar = task("fatJar", type = Jar::class) {
     manifest {
-        attributes["Implementation-Title"] = "Json Placeholder Processor"
+        attributes["Implementation-Title"] = "Data Processor"
         attributes["Implementation-Version"] = archiveVersion
-        attributes["Main-Class"] = "pl.kpmarczynski.jsonplaceholderprocessor.MainKt"
+        attributes["Main-Class"] = "pl.kpmarczynski.dataprocessor.MainKt"
     }
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
     with(tasks.jar.get() as CopySpec)

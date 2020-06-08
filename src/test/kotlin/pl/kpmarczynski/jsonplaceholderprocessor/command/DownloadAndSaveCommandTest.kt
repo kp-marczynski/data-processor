@@ -1,20 +1,20 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.command
+package pl.kpmarczynski.dataprocessor.command
 
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Test
-import pl.kpmarczynski.jsonplaceholderprocessor.parser.Parser
-import pl.kpmarczynski.jsonplaceholderprocessor.parser.ParserException
-import pl.kpmarczynski.jsonplaceholderprocessor.parser.ParserFactory
-import pl.kpmarczynski.jsonplaceholderprocessor.supplier.Supplier
-import pl.kpmarczynski.jsonplaceholderprocessor.supplier.SupplierException
-import pl.kpmarczynski.jsonplaceholderprocessor.supplier.SupplierFactory
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.Writable
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterException
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterProvider
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterProviderFactory
+import pl.kpmarczynski.dataprocessor.parser.Parser
+import pl.kpmarczynski.dataprocessor.parser.ParserException
+import pl.kpmarczynski.dataprocessor.parser.ParserFactory
+import pl.kpmarczynski.dataprocessor.supplier.Supplier
+import pl.kpmarczynski.dataprocessor.supplier.SupplierException
+import pl.kpmarczynski.dataprocessor.supplier.SupplierFactory
+import pl.kpmarczynski.dataprocessor.writer.Writable
+import pl.kpmarczynski.dataprocessor.writer.WriterException
+import pl.kpmarczynski.dataprocessor.writer.WriterProvider
+import pl.kpmarczynski.dataprocessor.writer.WriterProviderFactory
 import kotlin.test.BeforeTest
 
 class DownloadAndSaveCommandTest {

@@ -1,10 +1,10 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.parser
+package pl.kpmarczynski.dataprocessor.parser
 
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.assertThat
 import org.junit.Test
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.Writable
+import pl.kpmarczynski.dataprocessor.writer.Writable
 import kotlin.test.assertFailsWith
 
 class JsonArrayParserTest {

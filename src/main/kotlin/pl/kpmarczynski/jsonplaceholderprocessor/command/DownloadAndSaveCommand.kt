@@ -1,17 +1,17 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.command
+package pl.kpmarczynski.dataprocessor.command
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.associate
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.option
 import mu.KotlinLogging
-import pl.kpmarczynski.jsonplaceholderprocessor.parser.ParserException
-import pl.kpmarczynski.jsonplaceholderprocessor.parser.ParserFactory
-import pl.kpmarczynski.jsonplaceholderprocessor.supplier.SupplierException
-import pl.kpmarczynski.jsonplaceholderprocessor.supplier.SupplierFactory
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.Writable
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterException
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterProviderFactory
+import pl.kpmarczynski.dataprocessor.parser.ParserException
+import pl.kpmarczynski.dataprocessor.parser.ParserFactory
+import pl.kpmarczynski.dataprocessor.supplier.SupplierException
+import pl.kpmarczynski.dataprocessor.supplier.SupplierFactory
+import pl.kpmarczynski.dataprocessor.writer.Writable
+import pl.kpmarczynski.dataprocessor.writer.WriterException
+import pl.kpmarczynski.dataprocessor.writer.WriterProviderFactory
 
 class DownloadAndSaveCommand(
     private val supplierFactory: SupplierFactory,

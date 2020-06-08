@@ -1,2 +1,2 @@
-rootProject.name = "json-placeholder-processor"
+rootProject.name = "data-processor"
 

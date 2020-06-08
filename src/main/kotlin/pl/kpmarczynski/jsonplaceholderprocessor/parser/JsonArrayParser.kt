@@ -1,10 +1,10 @@
-package pl.kpmarczynski.jsonplaceholderprocessor.parser
+package pl.kpmarczynski.dataprocessor.parser
 
 import mu.KotlinLogging
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import pl.kpmarczynski.jsonplaceholderprocessor.writer.Writable
+import pl.kpmarczynski.dataprocessor.writer.Writable
 
 object JsonArrayParser : Parser {
     private const val DEFAULT_PRETTIFY = 0
