@@ -10,7 +10,7 @@ Script data flow works as following:
 * Parser parses supplied data to writable format
 * Writable data is written with provided writer
     
-## How to run with default values
+## How to run
 Use gradle to build and run project:
 
     gradlew run
@@ -47,6 +47,11 @@ Following are keys currently supported:
 To build fat jar run:
     
     gradlew clean build
+
+## How to test
+To run all test run:
+
+    gradlew test
 
 ## Used libraries
 * [Fuel](https://fuel.gitbook.io/documentation/) - HTTP networking library for Kotlin
