@@ -5,8 +5,8 @@ import java.io.File
 import java.io.Writer
 
 object FileWriterProvider : WriterProvider {
-    private const val DEFAULT_FILE_EXTENSION = ".json"
-    private const val DEFAULT_PATH = "posts"
+    const val DEFAULT_FILE_EXTENSION = ".json"
+    const val DEFAULT_PATH = "posts"
 
     private val logger = KotlinLogging.logger {}
 
@@ -35,9 +35,9 @@ object FileWriterProvider : WriterProvider {
         .let { if (it.isNullOrBlank()) DEFAULT_PATH else it }
         .let { if (it.last() != '/') "$it/" else it }
 
-    private fun getExtension(config: Map<String, String>) = config["extension"]
-        ?: DEFAULT_FILE_EXTENSION
-            .let { if (it.first() != '.') ".$it" else it }
+    private fun getExtension(config: Map<String, String>) = (config["extension"]
+        ?: DEFAULT_FILE_EXTENSION)
+        .let { if (it.first() != '.') ".$it" else it }
 
     private fun getFile(url: String) = File(url)
     private fun getBufferedWriter(file: File) = file.bufferedWriter()

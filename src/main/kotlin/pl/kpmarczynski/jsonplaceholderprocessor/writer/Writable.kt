@@ -6,7 +6,7 @@ import java.io.IOException
 sealed class Writable {
     abstract fun write(writerProvider: WriterProvider, config: Map<String, String>)
 
-    data class WritableObject(val identifier: String, private val content: String) : Writable() {
+    data class WritableObject(val identifier: String, val content: String) : Writable() {
         override fun write(writerProvider: WriterProvider, config: Map<String, String>) {
             writerProvider.getWriter(this, config).use {
                 try {
