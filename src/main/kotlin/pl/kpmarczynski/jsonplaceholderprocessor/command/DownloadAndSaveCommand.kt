@@ -14,16 +14,24 @@ import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterException
 import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterProviderFactory
 
 class DownloadAndSaveCommand : CliktCommand() {
-    private val source: String by option("-s", "--source", help = "Source to download jsons")
-        .default("https://jsonplaceholder.typicode.com/posts")
-    private val requestType: String by option("-r", "--request-type", help = "Request type protocol").default("https")
-    private val sourceResultType: String by option(
-        "--source-result-type",
-        help = "Type of result received from source"
-    ).default("jsonarray")
-    private val destinationType: String by option("--output-type", help = "Output type").default("file")
-    private val parserConfig: Map<String, String> by option().associate()
-    private val writerConfig: Map<String, String> by option().associate()
+    private val source: String
+            by option("-s", "--source", help = "Source to download jsons")
+                .default("https://jsonplaceholder.typicode.com/posts")
+    private val requestType: String
+            by option("-r", "--request-type", help = "Request type protocol")
+                .default("https")
+    private val suppliedDataType: String
+            by option("-d", "--supplied-data-type", help = "Type of result received from source")
+                .default("jsonarray")
+    private val destinationType: String
+            by option("-o", "--output-type", help = "Output type")
+                .default("file")
+    private val parserConfig: Map<String, String>
+            by option("-p", "--parser-config", help = "Collection of configuration pairs for parser")
+                .associate()
+    private val writerConfig: Map<String, String>
+            by option("-w", "--writer-config", help = "Collection of configuration pairs for writer")
+                .associate()
 
     private val logger = KotlinLogging.logger {}
 
@@ -47,7 +55,7 @@ class DownloadAndSaveCommand : CliktCommand() {
     }
 
     private fun parseData(data: String): Writable? = try {
-        ParserFactory.getParser(sourceResultType).parse(data, parserConfig)
+        ParserFactory.getParser(suppliedDataType).parse(data, parserConfig)
     } catch (ex: ParserException) {
         logger.error(ex.message)
         null
