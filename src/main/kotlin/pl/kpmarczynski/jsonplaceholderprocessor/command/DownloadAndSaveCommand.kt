@@ -22,16 +22,8 @@ class DownloadAndSaveCommand : CliktCommand() {
         help = "Type of result received from source"
     ).default("jsonarray")
     private val destinationType: String by option("--output-type", help = "Output type").default("file")
-    private val supplierConfig: Map<String, String> by option().associate()
     private val parserConfig: Map<String, String> by option().associate()
     private val writerConfig: Map<String, String> by option().associate()
-
-    //    private val outputDir: String by option("-o", "--output-dir", help = "Output directory").default("posts")
-
-    //    private val indentation: String by option("-p", "--indentation", help = "Flag for indentationing output json").default("0")
-//    private val expectedFields: List<String> by option("-f", "--fields").multiple()
-
-//    private val identifierKey: String by option("--identifier-key").default("id")
 
     private val logger = KotlinLogging.logger {}
 

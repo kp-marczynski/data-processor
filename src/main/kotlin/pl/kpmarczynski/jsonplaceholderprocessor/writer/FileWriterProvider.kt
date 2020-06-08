@@ -19,7 +19,7 @@ object FileWriterProvider : WriterProvider {
                 logger.info("Preparing file writer for filepath '$filepath'")
 
                 getFile(path).let {
-                    if (!it.exists()){
+                    if (!it.exists()) {
                         it.mkdirs()
                         logger.info("Created directory $path")
                     }

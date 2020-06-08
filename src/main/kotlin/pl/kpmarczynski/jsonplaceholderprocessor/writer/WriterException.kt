@@ -1,3 +1,3 @@
 package pl.kpmarczynski.jsonplaceholderprocessor.writer
 
-class WriterException(message: String): RuntimeException(message)
+class WriterException(message: String) : RuntimeException(message)
