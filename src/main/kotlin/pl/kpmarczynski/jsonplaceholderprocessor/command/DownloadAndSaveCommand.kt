@@ -13,7 +13,11 @@ import pl.kpmarczynski.jsonplaceholderprocessor.writer.Writable
 import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterException
 import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterProviderFactory
 
-class DownloadAndSaveCommand : CliktCommand() {
+class DownloadAndSaveCommand(
+    private val supplierFactory: SupplierFactory,
+    private val parserFactory: ParserFactory,
+    private val writerProviderFactory: WriterProviderFactory
+) : CliktCommand() {
     private val source: String
             by option("-s", "--source", help = "Source to download jsons")
                 .default("https://jsonplaceholder.typicode.com/posts")
@@ -21,16 +25,16 @@ class DownloadAndSaveCommand : CliktCommand() {
             by option("-r", "--request-type", help = "Request type protocol")
                 .default("https")
     private val suppliedDataType: String
-            by option("-d", "--supplied-data-type", help = "Type of result received from source")
+            by option("-p", "--parser-type", help = "Type of result received from source")
                 .default("jsonarray")
     private val destinationType: String
             by option("-o", "--output-type", help = "Output type")
                 .default("file")
     private val parserConfig: Map<String, String>
-            by option("-p", "--parser-config", help = "Collection of configuration pairs for parser")
+            by option("--parser-config", help = "Collection of configuration pairs for parser")
                 .associate()
     private val writerConfig: Map<String, String>
-            by option("-w", "--writer-config", help = "Collection of configuration pairs for writer")
+            by option("--writer-config", help = "Collection of configuration pairs for writer")
                 .associate()
 
     private val logger = KotlinLogging.logger {}
@@ -48,21 +52,21 @@ class DownloadAndSaveCommand : CliktCommand() {
     }
 
     private fun getData(): String? = try {
-        SupplierFactory.getSupplier(requestType).getData(source)
+        supplierFactory.getSupplier(requestType).getData(source)
     } catch (ex: SupplierException) {
         logger.error(ex.message)
         null
     }
 
     private fun parseData(data: String): Writable? = try {
-        ParserFactory.getParser(suppliedDataType).parse(data, parserConfig)
+        parserFactory.getParser(suppliedDataType).parse(data, parserConfig)
     } catch (ex: ParserException) {
         logger.error(ex.message)
         null
     }
 
     private fun writeData(writable: Writable) = try {
-        writable.write(WriterProviderFactory.getWriterProvider(destinationType), writerConfig)
+        writable.write(writerProviderFactory.getWriterProvider(destinationType), writerConfig)
     } catch (ex: WriterException) {
         logger.error(ex.message)
     }
