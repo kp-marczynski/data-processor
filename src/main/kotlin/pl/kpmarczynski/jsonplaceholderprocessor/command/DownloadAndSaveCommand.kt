@@ -5,9 +5,12 @@ import com.github.ajalt.clikt.parameters.options.associate
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.option
 import mu.KotlinLogging
+import pl.kpmarczynski.jsonplaceholderprocessor.parser.ParserException
 import pl.kpmarczynski.jsonplaceholderprocessor.parser.ParserFactory
+import pl.kpmarczynski.jsonplaceholderprocessor.supplier.SupplierException
 import pl.kpmarczynski.jsonplaceholderprocessor.supplier.SupplierFactory
 import pl.kpmarczynski.jsonplaceholderprocessor.writer.Writable
+import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterException
 import pl.kpmarczynski.jsonplaceholderprocessor.writer.WriterProviderFactory
 
 class DownloadAndSaveCommand : CliktCommand() {
@@ -25,7 +28,7 @@ class DownloadAndSaveCommand : CliktCommand() {
 
     //    private val outputDir: String by option("-o", "--output-dir", help = "Output directory").default("posts")
 
-    //    private val prettify: String by option("-p", "--prettify", help = "Flag for prettifying output json").default("0")
+    //    private val indentation: String by option("-p", "--indentation", help = "Flag for indentationing output json").default("0")
 //    private val expectedFields: List<String> by option("-f", "--fields").multiple()
 
 //    private val identifierKey: String by option("--identifier-key").default("id")
@@ -33,15 +36,36 @@ class DownloadAndSaveCommand : CliktCommand() {
     private val logger = KotlinLogging.logger {}
 
     override fun run() {
+        logger.info("Starting download and save command")
         getData().let { data ->
-            parseData(data).let { parsedData ->
-                writeData(parsedData)
-            }
+            if (data != null)
+                parseData(data).let { parsedData ->
+                    if (parsedData != null)
+                        writeData(parsedData)
+                }
         }
+        logger.info("Download and save command has finished execution")
     }
 
-    private fun getData() = SupplierFactory.getSupplier(requestType).getData(source)
-    private fun parseData(data: String) = ParserFactory.getParser(sourceResultType).parse(data, parserConfig)
-    private fun writeData(writable: Writable) =
+    private fun getData(): String? = try {
+        SupplierFactory.getSupplier(requestType).getData(source)
+    } catch (ex: SupplierException) {
+        logger.error(ex.message)
+        null
+    }
+
+    private fun parseData(data: String): Writable? = try {
+        ParserFactory.getParser(sourceResultType).parse(data, parserConfig)
+    } catch (ex: ParserException) {
+        logger.error(ex.message)
+        null
+    }
+
+    private fun writeData(writable: Writable) = try {
         writable.write(WriterProviderFactory.getWriterProvider(destinationType), writerConfig)
+    } catch (ex: WriterException) {
+        logger.error(ex.message)
+    }
+
 }
+

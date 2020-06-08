@@ -68,7 +68,7 @@ class JsonArrayParserTest {
     }
 
     @Test
-    fun `When prettify is configured then should be parsed to pretty WritableCollection`() {
+    fun `When indentation is configured then should be parsed to pretty WritableCollection`() {
         //given
         val expectedResult = Writable.WritableCollection(
             listOf(
@@ -77,7 +77,7 @@ class JsonArrayParserTest {
         )
 
         //when
-        val result = JsonArrayParser.parse("[$jsonObject1]", mapOf("prettify" to "4"))
+        val result = JsonArrayParser.parse("[$jsonObject1]", mapOf("indentation" to "4"))
 
         //then
         assertThat(result, instanceOf(Writable.WritableCollection::class.java))

@@ -26,7 +26,7 @@ internal class WriterProviderFactoryTest {
         val destinationType = "ftp"
 
         //when
-        val exception = assertFailsWith<WriterProviderException> { WriterProviderFactory.getWriterProvider(destinationType)}
+        val exception = assertFailsWith<WriterException> { WriterProviderFactory.getWriterProvider(destinationType)}
 
         //then
         MatcherAssert.assertThat(exception.message, CoreMatchers.`is`("No writer available for destination type $destinationType"))
